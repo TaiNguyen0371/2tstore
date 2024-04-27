@@ -33,6 +33,8 @@ export const fetchNew = async () => {
 
 export const fetchBySlug = async (slug: string) => {
   try {
+    console.log(process.env.URL + `/api/products/${slug}`);
+
     const res = await fetch(process.env.URL + `/api/products/${slug}`);
     const data = await res.json();
     return data.data;
