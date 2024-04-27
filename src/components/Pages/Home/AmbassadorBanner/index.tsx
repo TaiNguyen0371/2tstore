@@ -24,7 +24,9 @@ const AmbassadorBanner = ({
   const [ambassadorImgs, setAmbassadorImgs] = useState<string[]>([]);
   useEffect(() => {
     setAmbassadorProducts(ambassadorList);
-    setAmbassadorImgs(ambassadorList.map((item) => item.product.images[0].url));
+    setAmbassadorImgs(
+      ambassadorList?.map((item) => item?.product?.images[0].url)
+    );
   }, [ambassadorList]);
 
   useEffect(() => {
@@ -58,8 +60,8 @@ const AmbassadorBanner = ({
       <Image
         src={DarkBG}
         width={0}
-                    height={0}
-                    sizes="100%"
+        height={0}
+        sizes="100%"
         alt="dark background"
         className="w-full h-full object-cover rounded-xl select-none"
       />
@@ -115,9 +117,9 @@ const AmbassadorBanner = ({
             className="select-none size-[300px] absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[100%] object-cover -rotate-45"
           />
           <Image
-           width={0}
-           height={0}
-           sizes="100%"
+            width={0}
+            height={0}
+            sizes="100%"
             src={ambassadorImgs[1]}
             alt="2T Store Ambassador"
             className="select-none size-[300px] absolute top-1/2 -translate-y-1/2 translate-x-[100%] right-0 object-cover rotate-[45deg]"
@@ -145,9 +147,9 @@ const AmbassadorBanner = ({
         <div className="gap-6 flex items-center">
           <div className="w-[250px] h-[412.5px] rounded-xl overflow-hidden">
             <Image
-             width={0}
-             height={0}
-             sizes="100%"
+              width={0}
+              height={0}
+              sizes="100%"
               key={ambassadorProducts[0]?.image.url}
               src={ambassadorProducts[0]?.image.url}
               ref={(el: HTMLImageElement) => ambassadorImgRefs.current.push(el)}
@@ -157,9 +159,9 @@ const AmbassadorBanner = ({
           </div>
           <div className="w-[320px] h-[528px] rounded-xl overflow-hidden">
             <Image
-             width={0}
-             height={0}
-             sizes="100%"
+              width={0}
+              height={0}
+              sizes="100%"
               key={ambassadorProducts[0]?.image.url}
               src={ambassadorProducts[0]?.image.url}
               ref={(el: HTMLImageElement) => ambassadorImgRefs.current.push(el)}
