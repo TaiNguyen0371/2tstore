@@ -4,6 +4,7 @@ import { fetchBySlug } from "@/actions/product";
 import Link from "next/link";
 const ProductDetail = async ({ params }: { params: { slug: string } }) => {
   const productDetail = await fetchBySlug(params.slug);
+  console.log(productDetail);
   return (
     <div className="mt-40 mb-20 w-[calc(100%-160px)] mx-auto min-h-screen flex flex-col gap-8 items-center">
       {/* Link */}
