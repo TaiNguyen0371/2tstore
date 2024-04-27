@@ -50,8 +50,8 @@ const AmbassadorBanner = ({
     <>
       {ambassadorProducts &&
       ambassadorProducts &&
-      ambassadorProducts?.length < 1 &&
-      ambassadorImgs?.length < 1 ? (
+      ambassadorProducts?.length < 4 &&
+      ambassadorImgs?.length < 4 ? (
         <h1>No product</h1>
       ) : (
         <div
