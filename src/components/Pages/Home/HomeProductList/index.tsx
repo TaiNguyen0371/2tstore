@@ -49,14 +49,8 @@ const HomeProductList = ({ productList, className }: IHomeProductList) => {
     return () => {
       if (wrapper) {
         wrapper.removeEventListener("mousemove", dragging);
-        wrapper.removeEventListener(
-          "mouseup",
-          () => (isDragging = false)
-        );
-        wrapper.removeEventListener(
-          "mousedown",
-          () => (isDragging = true)
-        );
+        wrapper.removeEventListener("mouseup", () => (isDragging = false));
+        wrapper.removeEventListener("mousedown", () => (isDragging = true));
       }
     };
   }, [wrapperRef]);
@@ -67,7 +61,7 @@ const HomeProductList = ({ productList, className }: IHomeProductList) => {
       className={`${className} p-10 w-full transition-all overflow-x-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_100px,_black_calc(100%-100px),transparent_100%)]`}
     >
       <div className="w-fit flex gap-8">
-        {productList.map((pro, index) => (
+        {productList?.map((pro, index) => (
           <ProductCard
             key={index}
             productInfo={pro}
