@@ -25,7 +25,7 @@ const AmbassadorBanner = ({
   useEffect(() => {
     setAmbassadorProducts(ambassadorList);
     setAmbassadorImgs(
-      ambassadorList?.map((item) => item?.product?.images[0].url)
+      ambassadorList.map((item) => item?.product?.images[0].url)
     );
   }, [ambassadorList]);
 
@@ -54,7 +54,7 @@ const AmbassadorBanner = ({
   };
   return (
     <>
-      {ambassadorProducts.length < 1 && ambassadorImgs.length < 1 ? (
+      {ambassadorProducts?.length < 1 && ambassadorImgs?.length < 1 ? (
         <h1>No product</h1>
       ) : (
         <div
