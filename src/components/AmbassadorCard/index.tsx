@@ -1,7 +1,12 @@
+import Image from "next/image";
+
 const AmbassadorCard = ({ ambassadorInfo }: any) => {
   return (
     <div className="group w-1/4 h-[600px] bg-red-400 overflow-hidden rounded-xl relative">
-      <img
+      <Image
+        width={0}
+        height={0}
+        sizes="100%"
         className="w-full h-full object-cover"
         src={ambassadorInfo.image.url}
         alt={ambassadorInfo.product.name}

@@ -13,45 +13,47 @@ const HomeProductList = ({ productList, className }: IHomeProductList) => {
   const wrapperRef = useRef<null | HTMLDivElement>(null);
   useEffect(() => {
     const observer = observerToFadeIn();
-    if (wrapperRef.current) {
-      observer.observe(wrapperRef.current);
+    const wrapper = wrapperRef.current;
+    if (wrapper) {
+      observer.observe(wrapper);
     }
     return () => {
-      if (wrapperRef.current) {
-        observer.unobserve(wrapperRef.current);
+      if (wrapper) {
+        observer.unobserve(wrapper);
       }
     };
   }, []);
 
   useEffect(() => {
     let isDragging = false;
+    const wrapper = wrapperRef.current;
     const dragging = (e: any): void => {
-      if (wrapperRef.current) {
+      if (wrapper) {
         if (!isDragging) return;
         e.preventDefault();
         console.log("dragging", e.movementX);
-        if (wrapperRef.current.scrollLeft !== undefined) {
-          wrapperRef.current.scrollLeft -= e.movementX;
+        if (wrapper.scrollLeft !== undefined) {
+          wrapper.scrollLeft -= e.movementX;
         }
       }
     };
-    if (wrapperRef.current) {
-      wrapperRef.current.addEventListener("mousemove", dragging);
-      wrapperRef.current.addEventListener("mousedown", () => {
+    if (wrapper) {
+      wrapper.addEventListener("mousemove", dragging);
+      wrapper.addEventListener("mousedown", () => {
         isDragging = true;
       });
-      wrapperRef.current.addEventListener("mouseup", () => {
+      wrapper.addEventListener("mouseup", () => {
         isDragging = false;
       });
     }
     return () => {
-      if (wrapperRef.current) {
-        wrapperRef.current.removeEventListener("mousemove", dragging);
-        wrapperRef.current.removeEventListener(
+      if (wrapper) {
+        wrapper.removeEventListener("mousemove", dragging);
+        wrapper.removeEventListener(
           "mouseup",
           () => (isDragging = false)
         );
-        wrapperRef.current.removeEventListener(
+        wrapper.removeEventListener(
           "mousedown",
           () => (isDragging = true)
         );

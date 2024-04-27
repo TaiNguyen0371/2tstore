@@ -36,7 +36,7 @@ export const useScrollHeight = () => {
         setHeight(window.scrollY);
       });
     };
-  });
+  },[]);
 
   return {
     height: height,

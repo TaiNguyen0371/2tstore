@@ -1,5 +1,6 @@
 import { IProduct } from "@/types";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Image from "next/image";
 import Link from "next/link";
 interface IProductCardProps {
   productInfo: IProduct;
@@ -13,10 +14,13 @@ const ProductCard = ({ productInfo, className }: IProductCardProps) => {
         className={`overflow-hidden group whitespace-nowrap border-l-[1px] border-t-[1px] relative rounded-2xl bg-cs_secondary_black w-[350px] h-[300px]`}
       >
         <div className="size-[200px] transition-all duration-500 group-hover:-rotate-12 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img
+          <Image
+            width={0}
+            height={0}
+            sizes="100%"
             src={productInfo.images[0].url}
             alt={productInfo.name}
-            className="select-none"
+            className="w-full select-none"
           />
         </div>
         <div className="text-white p-4 transition-all duration-500 absolute bottom-0 translate-y-[100%] group-hover:translate-y-0">

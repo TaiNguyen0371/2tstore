@@ -25,7 +25,7 @@ const AmbassadorBanner = ({
   useEffect(() => {
     setAmbassadorProducts(ambassadorList);
     setAmbassadorImgs(ambassadorList.map((item) => item.product.images[0].url));
-  }, []);
+  }, [ambassadorList]);
 
   useEffect(() => {
     [0, 1, 2].forEach((item) => {
@@ -57,12 +57,18 @@ const AmbassadorBanner = ({
       {/* background */}
       <Image
         src={DarkBG}
+        width={0}
+                    height={0}
+                    sizes="100%"
         alt="dark background"
         className="w-full h-full object-cover rounded-xl select-none"
       />
       {/* Product shelf */}
       <div className="absolute bottom-0 right-1/4 translate-x-1/2 z-20">
         <Image
+          width={0}
+          height={0}
+          sizes="100%"
           src={ProductShelf}
           alt="product shelf"
           className="object-cover select-none"
@@ -100,22 +106,34 @@ const AmbassadorBanner = ({
             transition-all ease-in-out duration-700 pointer-events-none
         "
         >
-          <img
+          <Image
+            width={0}
+            height={0}
+            sizes="100%"
             src={ambassadorImgs[0]}
             alt="2T Store Ambassador"
             className="select-none size-[300px] absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[100%] object-cover -rotate-45"
           />
-          <img
+          <Image
+           width={0}
+           height={0}
+           sizes="100%"
             src={ambassadorImgs[1]}
             alt="2T Store Ambassador"
             className="select-none size-[300px] absolute top-1/2 -translate-y-1/2 translate-x-[100%] right-0 object-cover rotate-[45deg]"
           />
-          <img
+          <Image
+            width={0}
+            height={0}
+            sizes="100%"
             src={ambassadorImgs[2]}
             alt="2T Store Ambassador"
             className="select-none size-[300px] absolute object-cover bottom-0 left-1/2 -translate-x-1/2 translate-y-[100%] scale-[-1] -rotate-45"
           />
-          <img
+          <Image
+            width={0}
+            height={0}
+            sizes="100%"
             src={ambassadorImgs[3]}
             alt="2T Store Ambassador"
             className="select-none size-[300px] absolute object-cover left-0 top-1/2 -translate-x-[100%] -translate-y-1/2 scale-[-1] rotate-45"
@@ -126,7 +144,10 @@ const AmbassadorBanner = ({
       <div className="absolute left-3/4 top-1/2 -translate-y-1/2 -translate-x-[434px]">
         <div className="gap-6 flex items-center">
           <div className="w-[250px] h-[412.5px] rounded-xl overflow-hidden">
-            <img
+            <Image
+             width={0}
+             height={0}
+             sizes="100%"
               key={ambassadorProducts[0]?.image.url}
               src={ambassadorProducts[0]?.image.url}
               ref={(el: HTMLImageElement) => ambassadorImgRefs.current.push(el)}
@@ -135,7 +156,10 @@ const AmbassadorBanner = ({
             />
           </div>
           <div className="w-[320px] h-[528px] rounded-xl overflow-hidden">
-            <img
+            <Image
+             width={0}
+             height={0}
+             sizes="100%"
               key={ambassadorProducts[0]?.image.url}
               src={ambassadorProducts[0]?.image.url}
               ref={(el: HTMLImageElement) => ambassadorImgRefs.current.push(el)}
@@ -144,7 +168,10 @@ const AmbassadorBanner = ({
             />
           </div>
           <div className="w-[250px] h-[412.5px] rounded-xl overflow-hidden">
-            <img
+            <Image
+              width={0}
+              height={0}
+              sizes="100%"
               key={ambassadorProducts[0]?.image.url}
               src={ambassadorProducts[0]?.image.url}
               ref={(el: HTMLImageElement) => ambassadorImgRefs.current.push(el)}

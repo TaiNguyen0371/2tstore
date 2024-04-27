@@ -43,6 +43,9 @@ const SignIn = () => {
         <Image
           className="size-20 absolute top-0 left-0"
           src={Logo}
+          width={0}
+          height={0}
+          sizes="100%"
           alt="2T Store"
         />
         <h1 className="text-4xl font-bold">Sign In</h1>
@@ -81,7 +84,7 @@ const SignIn = () => {
             />
           </div>
           <div className="w-full">
-            <span>Dont's have an account? </span>
+            <span>Dont&#39;s have an account? </span>
             <Link
               href={"/auth/signup"}
               className="hover:text-cs_primary_yellow font-semibold"

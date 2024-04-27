@@ -16,6 +16,9 @@ const HomeCarousel = ({ carouselPros }: IHomeCarouselProps) => {
     <>
       <div className="relative h-screen overflow-hidden">
         <Image
+         width={0}
+         height={0}
+         sizes="100%"
           src={HomeCarouselBg}
           alt="Home Carousel"
           className="absolute w-full h-full -z-10"
@@ -37,12 +40,15 @@ const HomeCarousel = ({ carouselPros }: IHomeCarouselProps) => {
                   <Button>Buy now</Button>
                 </div>
                 <div className="w-2/3 h-full">
-                  <img
-                    className="w-full object-cover -rotate-[20deg] select-none"
+                  <Image
+                    width={0}
+                    height={0}
+                    sizes="100%"
+                    className="w-full h-auto object-cover -rotate-[20deg] select-none"
                     src={pro.images[0].url}
-                    alt=""
+                    alt={pro.name}
                   />
-                  {/* <img
+                  {/* <Image
                     className="w-[800px] absolute top-0 left-0 object-cover rotate-45 -scale-x-100 translate-x-1/4 -translate-y-[10%]"
                     src={pro.images[0].url}
                     alt=""

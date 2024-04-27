@@ -9,7 +9,7 @@ export const connect = async () => {
         "Mongoose default connection open to " + connection.db.databaseName
       );
     });
-    connection.on("error", (err) => {
+    connection.on("error", (err: any) => {
       console.log("Mongoose default connection error: " + err);
       process.exit();
     });

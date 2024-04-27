@@ -52,6 +52,9 @@ const SignUp = () => {
         <Image
           className="size-20 absolute top-0 left-0"
           src={Logo}
+          width={0}
+          height={0}
+          sizes="100%"
           alt="2T Store"
         />
         <h1 className="text-4xl font-bold">Sign In</h1>

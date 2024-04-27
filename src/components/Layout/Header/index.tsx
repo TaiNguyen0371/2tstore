@@ -28,7 +28,14 @@ const Header = (props: IHeaderProps) => {
     >
       <div>
         <Link href="/">
-          <Image src={logo} className="size-20" alt="2T Store" />
+          <Image
+            width={0}
+            height={0}
+            sizes="100%"
+            src={logo}
+            className="size-20"
+            alt="2T Store"
+          />
         </Link>
       </div>
       <NavBar className="" isSignedIn={props.signedIn} />

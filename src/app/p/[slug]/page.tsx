@@ -1,6 +1,6 @@
 import Carousel from "@/components/Pages/ProductDetail/Carousel";
 import Informations from "@/components/Pages/ProductDetail/Informations";
-import { fetchBySlug } from "@/lib/product";
+import { fetchBySlug } from "@/actions/product";
 import Link from "next/link";
 const ProductDetail = async ({ params }: { params: { slug: string } }) => {
   const productDetail = await fetchBySlug(params.slug);
