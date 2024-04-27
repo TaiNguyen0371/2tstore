@@ -8,6 +8,7 @@ import { Icon } from "@iconify/react";
 import { useEffect, useRef, useState, Ref } from "react";
 import Button from "@/components/Button";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
+import ErrorImg from "@/images/error_img.png";
 interface IAmbassadorBannerProps {
   ambassadorList: IAmbassador[];
   className?: string;
@@ -112,7 +113,7 @@ const AmbassadorBanner = ({
             width={0}
             height={0}
             sizes="100%"
-            src={ambassadorImgs[0]}
+            src={ambassadorImgs[0] || ErrorImg}
             alt="2T Store Ambassador"
             className="select-none size-[300px] absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[100%] object-cover -rotate-45"
           />
@@ -120,7 +121,7 @@ const AmbassadorBanner = ({
             width={0}
             height={0}
             sizes="100%"
-            src={ambassadorImgs[1]}
+            src={ambassadorImgs[1] || ErrorImg}
             alt="2T Store Ambassador"
             className="select-none size-[300px] absolute top-1/2 -translate-y-1/2 translate-x-[100%] right-0 object-cover rotate-[45deg]"
           />
@@ -128,7 +129,7 @@ const AmbassadorBanner = ({
             width={0}
             height={0}
             sizes="100%"
-            src={ambassadorImgs[2]}
+            src={ambassadorImgs[2] || ErrorImg}
             alt="2T Store Ambassador"
             className="select-none size-[300px] absolute object-cover bottom-0 left-1/2 -translate-x-1/2 translate-y-[100%] scale-[-1] -rotate-45"
           />
@@ -136,7 +137,7 @@ const AmbassadorBanner = ({
             width={0}
             height={0}
             sizes="100%"
-            src={ambassadorImgs[3]}
+            src={ambassadorImgs[3] || ErrorImg}
             alt="2T Store Ambassador"
             className="select-none size-[300px] absolute object-cover left-0 top-1/2 -translate-x-[100%] -translate-y-1/2 scale-[-1] rotate-45"
           />
@@ -186,22 +187,26 @@ const AmbassadorBanner = ({
       {/* Product informations */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 text-white w-1/3 p-8 flex flex-col gap-8 items-start">
         <h1
-          key={ambassadorProducts[0]?.name}
+          key={ambassadorProducts && ambassadorProducts[0]?.name}
           className="text-[50px] font-bold animate-fadeIn transition-all"
         >
-          {ambassadorProducts[0]?.product.name}
+          {ambassadorProducts && ambassadorProducts[0]?.product.name}
         </h1>
         <p
-          key={ambassadorProducts[0]?.image.url}
+          key={ambassadorProducts && ambassadorProducts[0]?.image.url}
           className="animate-fadeIn transition-all"
         >
-          {ambassadorProducts[0]?.product.description}
+          {ambassadorProducts && ambassadorProducts[0]?.product.description}
         </p>
         <Button
-          key={ambassadorProducts[0]?.product.slug}
+          key={ambassadorProducts && ambassadorProducts[0]?.product.slug}
           className="animate-fadeIn transition-all"
         >
-          <Link href={`/products/${ambassadorProducts[0]?.product.slug}`}>
+          <Link
+            href={`/products/${
+              ambassadorProducts && ambassadorProducts[0]?.product.slug
+            }`}
+          >
             Buy now
           </Link>
         </Button>
