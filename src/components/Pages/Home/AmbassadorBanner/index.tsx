@@ -48,7 +48,10 @@ const AmbassadorBanner = ({
   };
   return (
     <>
-      {ambassadorProducts?.length < 1 && ambassadorImgs?.length < 1 ? (
+      {ambassadorProducts &&
+      ambassadorProducts &&
+      ambassadorProducts?.length < 1 &&
+      ambassadorImgs?.length < 1 ? (
         <h1>No product</h1>
       ) : (
         <div
