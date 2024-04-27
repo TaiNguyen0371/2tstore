@@ -18,7 +18,7 @@ const Informations = ({ productInfor, className }: IInformations) => {
       <div className="min-h-[120px]">
         <span>Select size</span>
         <div className="flex gap-2 my-2 flex-wrap">
-          {productInfor.sizes.map((size, index) => (
+          {productInfor?.sizes?.map((size, index) => (
             <motion.button
               key={index}
               whileTap={{ scale: 0.7 }}
