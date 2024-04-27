@@ -25,15 +25,9 @@ const AmbassadorBanner = ({
   useEffect(() => {
     setAmbassadorProducts(ambassadorList);
     setAmbassadorImgs(
-      ambassadorList.map((item) => item?.product?.images[0].url)
+      ambassadorList?.map((item) => item?.product?.images[0].url)
     );
   }, [ambassadorList]);
-
-  useEffect(() => {
-    [0, 1, 2].forEach((item) => {
-      // useIntersectionObserver(ambassadorImgRefs.current[item]);
-    });
-  }, []);
 
   const productCircleDoNext = () => {
     const newArr = ambassadorProducts.splice(1, ambassadorProducts?.length);
