@@ -9,7 +9,7 @@ import { useState } from "react";
 const AuthSections = ({ className }: { className?: string }) => {
   const [tabIndex, setTabIndex] = useState<number>(0);
   const tabTitle = ["Profile", "Favorites", "Orders"];
-  const tabComponent = [<FormInfo />, <Favorites />, <Orders />];
+  const tabComponent = [<FormInfo key={0}/>, <Favorites key={1}/>, <Orders key={2}/>];
   return (
     <div className={`${className}`}>
       <div className="flex gap-4">
