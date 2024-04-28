@@ -29,10 +29,13 @@ export interface IAmbassador {
   product: IProduct;
 }
 
-
 export interface IUser {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
+  avatar: string;
+  numberPhone: string;
+  address: string;
   role: "admin" | "customer";
 }

@@ -4,8 +4,8 @@ import { cookies } from "next/headers";
 import { IUser } from "./types";
 
 // 1. Specify protected and public routes
-const protectedRoutes = ["/admin", "/cart"];
-
+const protectedRoutes = ["/admin", "/cart", '/auth'];
+  
 export default async function middleware(req: NextRequest) {
   // 2. Check if the current route is protected or public
   const path = req.nextUrl.pathname;
@@ -17,11 +17,10 @@ export default async function middleware(req: NextRequest) {
   const session = await decrypt(cookie);
 
   const userInfo = session?.userInfo as IUser;
-  console.log("mdw: ", userInfo);
 
   // 5. Redirect to /login if the user is not authenticated
   // Note: Can't not redirect to private routes
-  if (isProtectedRoute && !session?.userInfo) {
+  if (isProtectedRoute && !userInfo) {
     return NextResponse.redirect(new URL("/auth/signin", req.nextUrl));
   }
 
@@ -32,8 +31,6 @@ export default async function middleware(req: NextRequest) {
     userInfo &&
     req.nextUrl.pathname.startsWith("/admin")
   ) {
-    console.log("check role: ", userInfo.role === "admin");
-
     if (userInfo.role === "admin") {
       return NextResponse.redirect(new URL("/admin", req.nextUrl));
     } else {

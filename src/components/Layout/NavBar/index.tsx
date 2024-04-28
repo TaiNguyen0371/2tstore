@@ -120,15 +120,19 @@ const NavBar = ({ className, isSignedIn }: INavBarProps) => {
               />
             </MenuHandler>
             <MenuList className="bg-cs_secondary_black border-none text-white">
-              <MenuItem className="hover:!bg-cs_tertiary_black hover:!text-white">
-                Profile
-              </MenuItem>
-              <MenuItem className="hover:!bg-cs_tertiary_black hover:!text-white">
-                Cart
-              </MenuItem>
+              <Link href={"/auth"}>
+                <MenuItem className="hover:!bg-cs_tertiary_black hover:!text-white">
+                  Profile
+                </MenuItem>
+              </Link>
+              <Link href={"/auth/cart"}>
+                <MenuItem className="hover:!bg-cs_tertiary_black hover:!text-white">
+                  Cart
+                </MenuItem>
+              </Link>
               <MenuItem
                 onClick={handleSignOut}
-                className="hover:!bg-cs_tertiary_black hover:!text-white"
+                className="hover:!bg-cs_tertiary_black hover:!text-white size-full"
               >
                 Sign Out
               </MenuItem>

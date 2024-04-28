@@ -14,6 +14,7 @@ const Button = ({
 }: IButtonProps) => {
   return (
     <motion.button
+      onClick={onClick}
       type={type}
       className={`${className} rounded-xl px-10 bg-cs_primary_yellow w-[250px] h-[75px] text-white font-bold text-3xl`}
       whileTap={{ scale: 0.9 }}
