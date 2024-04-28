@@ -27,7 +27,7 @@ export default async function RootLayout({
   const signedIn = await checkSignedIn();
   return (
     <html lang="en">
-      <body className={`${open_Sans.className} bg-cs_primary_black`}>
+      <body className={`${open_Sans.className} bg-cs_primary_black text-white`}>
         <ThemeProvider>
           <div className="flex flex-col justify-between min-h-screen relative">
             <Header className="h-20" signedIn={signedIn} />

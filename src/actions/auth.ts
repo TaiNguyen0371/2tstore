@@ -4,7 +4,7 @@ import { IUser } from "@/types";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 export const signUp = async (formData: any) => {
-  const res = await fetch("http://localhost:3000/api/users/signup", {
+  const res = await fetch(process.env.URL + "/api/users/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export const signUp = async (formData: any) => {
 };
 
 export const signIn = async (formData: any) => {
-  const res = await fetch("http://localhost:3000/api/users/signin", {
+  const res = await fetch(process.env.URL + "/api/users/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -53,3 +53,11 @@ export const signOut = async () => {
   await deleteSession();
   redirect("/auth/signin");
 };
+
+export const getProfile = async () => {
+  const cookie = cookies().get("session")?.value;
+  const session = await decrypt(cookie);
+  const userInfo = session?.userInfo as IUser;
+  if (!session || !userInfo) return null;
+  return userInfo;
+}
