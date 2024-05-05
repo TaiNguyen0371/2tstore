@@ -49,7 +49,7 @@ const productSchema = new mongoose.Schema(
         enum: ["value", "percentage"],
       },
       value: {
-        type: mongoose.Schema.Types.Mixed,
+        type: String,
         require: [true, "Please provide a value"],
       },
       startDate: { type: Date, require: [true, "Please provide a start date"] },

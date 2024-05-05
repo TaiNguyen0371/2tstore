@@ -3,6 +3,7 @@ import ProductCard from "@/components/ProductCard";
 import { IProduct } from "@/types";
 import { useEffect, useRef, useState } from "react";
 import { observerToFadeIn } from "@/lib/Ui/observerToFadeIn";
+import { getFavoriteProducts } from "@/actions/auth";
 interface IHomeProductList {
   productList: IProduct[];
   className?: string;
@@ -10,6 +11,7 @@ interface IHomeProductList {
 
 const HomeProductList = ({ productList, className }: IHomeProductList) => {
   // const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [favoriteProducts, setFavoriteProducts] = useState<IProduct[]>([]);
   const wrapperRef = useRef<null | HTMLDivElement>(null);
   useEffect(() => {
     const observer = observerToFadeIn();
@@ -31,7 +33,6 @@ const HomeProductList = ({ productList, className }: IHomeProductList) => {
       if (wrapper) {
         if (!isDragging) return;
         e.preventDefault();
-        console.log("dragging", e.movementX);
         if (wrapper.scrollLeft !== undefined) {
           wrapper.scrollLeft -= e.movementX;
         }
@@ -55,6 +56,16 @@ const HomeProductList = ({ productList, className }: IHomeProductList) => {
     };
   }, [wrapperRef]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getFavoriteProducts();
+      const productList = data.data.favoriteProducts.map(
+        (fp: any) => fp.product
+      );
+      setFavoriteProducts(productList);
+    };
+    fetchData();
+  }, []);
   return (
     <div
       ref={wrapperRef}
@@ -65,7 +76,9 @@ const HomeProductList = ({ productList, className }: IHomeProductList) => {
           <ProductCard
             key={index}
             productInfo={pro}
-            className="cursor-pointer"
+            favorited={
+              favoriteProducts?.find((fp) => fp._id === pro._id) ? true : false
+            }
           />
         ))}
       </div>

@@ -23,7 +23,7 @@ const AmbassadorBanner = ({
   );
   
   const [ambassadorImgs, setAmbassadorImgs] = useState<string[]>([]);
-  console.log(ambassadorImgs);
+  // console.log(ambassadorImgs);
   useEffect(() => {
     setAmbassadorProducts(ambassadorList);
     setAmbassadorImgs(

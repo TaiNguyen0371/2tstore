@@ -5,7 +5,9 @@ import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import { Toaster } from "react-hot-toast";
-import { checkSignedIn } from "@/actions/auth";
+import { verifySession } from "@/actions/auth";
+import AppProvider from "@/components/AppProvider";
+import { cookies } from "next/headers";
 
 const open_Sans = Open_Sans({
   subsets: ["latin"],
@@ -24,16 +26,20 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const signedIn = await checkSignedIn();
+  const session = await verifySession();
+  const cookieStore = cookies();
+  const sessionToken = cookieStore.get("session");
   return (
     <html lang="en">
       <body className={`${open_Sans.className} bg-cs_primary_black text-white`}>
         <ThemeProvider>
-          <div className="flex flex-col justify-between min-h-screen relative">
-            <Header className="h-20" signedIn={signedIn} />
-            <main className="flex-grow">{children}</main>
-            <Footer className="h-80" />
-          </div>
+          <AppProvider token={sessionToken?.value}>
+            <div className="flex flex-col justify-between min-h-screen relative">
+              <Header className="h-20" isSignedIn={session.isAuth} />
+              <main className="flex-grow">{children}</main>
+              <Footer className="h-80" />
+            </div>
+          </AppProvider>
         </ThemeProvider>
         <Toaster position="top-right" />
       </body>

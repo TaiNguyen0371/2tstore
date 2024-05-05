@@ -28,7 +28,7 @@ const FormIpt = ({
     >
       <h1
         className={`${
-          isFocus || value !== ""
+          isFocus || value
             ? "top-0 left-0 -translate-y-[100%]"
             : "left-0 top-1/2 -translate-y-1/2 translate-x-2"
         } absolute transition-all ease-in-out duration-300 pointer-events-none`}
