@@ -9,12 +9,14 @@ import PredatorSeriesBG from "@/images/predator_series_bg.png";
 import ProductCard from "@/components/ProductCard";
 import AmbassadorBanner from "@/components/Pages/Home/AmbassadorBanner";
 import HomeProductList from "@/components/Pages/Home/HomeProductList";
+import { verifySession } from "@/actions/auth";
+import { createContext, useContext } from "react";
 
 export default async function Home() {
   const carouselPros = await fetchCarousel();
   const ambassadorList = await fetchAmbassador();
   const newProducts = await fetchNew();
-
+  
   return (
     <main className="">
       <HomeCarousel carouselPros={carouselPros} />

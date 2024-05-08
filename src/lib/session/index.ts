@@ -1,3 +1,4 @@
+import "server-only";
 import { IUser } from "@/types";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
@@ -19,6 +20,8 @@ export async function decrypt(session: string | undefined = "") {
     const { payload } = await jwtVerify(session, encodedKey, {
       algorithms: ["HS256"],
     });
+    // console.log("payload: ", payload);
+
     return payload;
   } catch (error: any) {
     console.log(error.message);
@@ -29,8 +32,6 @@ export async function decrypt(session: string | undefined = "") {
 export async function createSession(userInfo: IUser) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 Day
   const session = await encrypt({ userInfo: userInfo });
-  console.log(userInfo);
-
   cookies().set("session", session, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
@@ -40,25 +41,6 @@ export async function createSession(userInfo: IUser) {
   });
 }
 
-export async function updateSession() {
-  const session = cookies().get("session")?.value;
-  const payload = await decrypt(session);
-
-  if (!session || !payload) {
-    return null;
-  }
-
-  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-  cookies().set("session", session, {
-    httpOnly: true,
-    secure: true,
-    expires: expires,
-    sameSite: "lax",
-    path: "/",
-  });
-}
-
 export async function deleteSession() {
   cookies().delete("session");
 }
-

@@ -3,10 +3,16 @@ export interface IFile {
   secure_url: string;
   public_id: string;
 }
+
+interface ICategory {
+  name: string;
+}
+
 export interface IProduct {
+  _id: string;
   slug: string;
   name: string;
-  category: string;
+  category: ICategory;
   price: number;
   description: string;
   images: IFile[];
@@ -21,6 +27,12 @@ export interface IProduct {
       quantity: number;
     }
   ];
+  discount: {
+    type: string;
+    value: string;
+    startDate: Date;
+    endDate: Date;
+  };
 }
 
 export interface IAmbassador {
@@ -30,12 +42,22 @@ export interface IAmbassador {
 }
 
 export interface IUser {
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   avatar: string;
-  numberPhone: string;
-  address: string;
+  phone: string;
+  specific_address: string;
+  city: string;
+  district: string;
+  ward: string;
   role: "admin" | "customer";
+}
+
+export interface ICartItem {
+  product: IProduct;
+  quantity: number;
+  size: string;
 }

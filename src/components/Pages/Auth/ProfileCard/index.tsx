@@ -49,9 +49,9 @@ const ProfileCard = ({ className, userInfo }: IProfileCard) => {
           {userInfo?.firstName + " " + userInfo?.lastName}
         </h1>
         <h1>
-          {userInfo?.numberPhone ? userInfo?.numberPhone : "No number phone"}
+          {userInfo?.phone ? userInfo?.phone : "No number phone"}
         </h1>
-        <span>{userInfo?.address ? userInfo?.address : "No address"}</span>
+        <span>{userInfo?.city ? userInfo?.city : "No address"}</span>
       </div>
     </div>
   );

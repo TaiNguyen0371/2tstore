@@ -10,7 +10,6 @@ interface IHomeCarouselProps {
 }
 
 const HomeCarousel = ({ carouselPros }: IHomeCarouselProps) => {
-  // console.log(carouselPros);
 
   return (
     <>

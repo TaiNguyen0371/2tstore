@@ -1,15 +1,23 @@
 "use client";
-
 import Button from "@/components/Button";
 import FormInfo from "../FormInfo";
 import Favorites from "../Favorites";
 import Orders from "../Orders";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { IUser } from "@/types";
 
-const AuthSections = ({ className }: { className?: string }) => {
+interface IAuthSections {
+  className?: string;
+  userInfo: IUser | null;
+}
+const AuthSections = ({ className, userInfo }: IAuthSections) => {
   const [tabIndex, setTabIndex] = useState<number>(0);
   const tabTitle = ["Profile", "Favorites", "Orders"];
-  const tabComponent = [<FormInfo key={0}/>, <Favorites key={1}/>, <Orders key={2}/>];
+  const tabComponent = [
+    <FormInfo userInfo={userInfo} key={0} />,
+    <Favorites key={1} />,
+    <Orders key={2} />,
+  ];
   return (
     <div className={`${className}`}>
       <div className="flex gap-4">
@@ -27,7 +35,9 @@ const AuthSections = ({ className }: { className?: string }) => {
           </div>
         ))}
       </div>
-      <div className="mt-8">{tabComponent.find((item, index) => index === tabIndex)}</div>
+      <div className="mt-8 relative">
+        {tabComponent.find((item, index) => index === tabIndex)}
+      </div>
     </div>
   );
 };

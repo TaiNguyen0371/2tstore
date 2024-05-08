@@ -2,35 +2,24 @@ import { NextRequest, NextResponse } from "next/server";
 import { decrypt } from "@/lib/session";
 import { cookies } from "next/headers";
 import { IUser } from "./types";
+import { verifySession } from "./actions/auth";
 
 // 1. Specify protected and public routes
-const protectedRoutes = ["/admin", "/cart", '/auth'];
-  
+const protectedRoutes = ["/admin", "/cart", "/auth"];
+
 export default async function middleware(req: NextRequest) {
-  // 2. Check if the current route is protected or public
   const path = req.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.includes(path);
 
-  // 3. Decrypt the session from the cookie
+  const session = await verifySession();
+  // console.log("ss: ", session);
 
-  const cookie = cookies().get("session")?.value;
-  const session = await decrypt(cookie);
-
-  const userInfo = session?.userInfo as IUser;
-
-  // 5. Redirect to /login if the user is not authenticated
-  // Note: Can't not redirect to private routes
-  if (isProtectedRoute && !userInfo) {
+  if (!isProtectedRoute) return NextResponse.next();
+  if (!session)
     return NextResponse.redirect(new URL("/auth/signin", req.nextUrl));
-  }
+  const userInfo = session.session?.userInfo as IUser;
 
-  // 6. Redirect to /dashboard if the user is authenticated
-
-  if (
-    isProtectedRoute &&
-    userInfo &&
-    req.nextUrl.pathname.startsWith("/admin")
-  ) {
+  if (userInfo && req.nextUrl.pathname.startsWith("/admin")) {
     if (userInfo.role === "admin") {
       return NextResponse.redirect(new URL("/admin", req.nextUrl));
     } else {
@@ -45,8 +34,6 @@ export default async function middleware(req: NextRequest) {
       return NextResponse.next();
     }
   }
-
-  return NextResponse.next();
 }
 
 // Routes Middleware should not run on

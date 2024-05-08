@@ -10,7 +10,7 @@ import SearchIpt from "../../SearchIpt";
 import useScroll from "@/hooks/useScroll";
 interface IHeaderProps {
   className?: string;
-  signedIn?: boolean;
+  isSignedIn?: boolean;
 }
 const Header = (props: IHeaderProps) => {
   const { isScrollDown } = useScroll();
@@ -38,7 +38,7 @@ const Header = (props: IHeaderProps) => {
           />
         </Link>
       </div>
-      <NavBar className="" isSignedIn={props.signedIn} />
+      <NavBar className="" isSignedIn={props.isSignedIn} />
     </header>
   );
 };

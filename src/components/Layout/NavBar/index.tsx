@@ -16,13 +16,14 @@ import { useEffect, useState } from "react";
 import SearchIpt from "../../SearchIpt";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import toast from "react-hot-toast";
-import { signOut } from "@/actions/auth";
+import { verifySession, signOut } from "@/actions/auth";
 interface INavBarProps {
   className?: string;
   isSignedIn?: boolean;
 }
 const NavBar = ({ className, isSignedIn }: INavBarProps) => {
   const [openNav, setOpenNav] = useState(false);
+  // const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
     window.addEventListener(
@@ -36,6 +37,16 @@ const NavBar = ({ className, isSignedIn }: INavBarProps) => {
       );
     };
   }, []);
+
+  // useEffect(() => {
+  //   const checkLogin = async () => {
+  //     const data = await verifySession();
+  //     console.log(data);
+
+  //     if (data.isAuth) setIsSignedIn(true);
+  //   };
+  //   checkLogin();
+  // },[]);
 
   useEffect(() => {
     if (isSignedIn) {

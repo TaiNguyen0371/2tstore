@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema(
       default: "customer",
       enum: ["admin", "customer"],
     },
-    numberPhone: { type: String, default: null },
+    phone: { type: String, default: null },
     specific_address: { type: String, default: null },
     city: { type: String, default: null },
     district: { type: String, default: null },
