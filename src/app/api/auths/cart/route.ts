@@ -51,17 +51,16 @@ export async function POST(req: NextRequest) {
     const decoded = await decrypt(session);
     const userInfo = decoded?.userInfo as IUser;
     const reqBody = await req.json();
-    console.log(reqBody);
     const { product, quantity, size } = reqBody;
     const existedCart = await CartModel.findOne({ user: userInfo._id });
     if (existedCart) {
-      const existingProductIndex = existedCart.products.findIndex(
+      const existingProductIndex = existedCart.items.findIndex(
         (p: any) => p.product.toString() === product
       );
       if (existingProductIndex !== -1) {
-        existedCart.products[existingProductIndex].quantity += quantity;
+        existedCart.items[existingProductIndex].quantity += quantity;
       } else {
-        existedCart.products.push({ product, quantity });
+        existedCart.items.push({ product, quantity, size });
       }
       await existedCart.save();
       return Response.json({ message: "success", data: existedCart });
@@ -70,8 +69,34 @@ export async function POST(req: NextRequest) {
         user: userInfo._id,
         items: [{ product: product, quantity, size }],
       });
-      console.log(cart);
       return Response.json({ message: "success", data: cart });
+    }
+  } catch (error: any) {
+    return Response.json({ message: error.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const authHeader = req.headers.get("Authorization");
+    const session = authHeader && authHeader.split(" ")[1];
+    if (!session) return Response.json({ message: "No session found" });
+    const decoded = await decrypt(session);
+    const userInfo = decoded?.userInfo as IUser;
+    const reqBody = await req.json();
+    const { product } = reqBody;
+    const existedCart = await CartModel.findOne({ user: userInfo._id });
+    if (existedCart) {
+      const existingProductIndex = existedCart.items.findIndex(
+        (p: any) => p.product.toString() === product
+      );
+      if (existingProductIndex !== -1) {
+        existedCart.items.splice(existingProductIndex, 1);
+      }
+      await existedCart.save();
+      return Response.json({ message: "success", data: existedCart });
+    } else {
+      return Response.json({ message: "Cart not found" }, { status: 404 });
     }
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });

@@ -147,3 +147,17 @@ export const addToCart = async ({
   if (data) return data;
   return null;
 };
+
+export const removeFromCart = async (productId: string) => {
+  const res = await fetch(process.env.URL + "/api/auths/cart", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${cookies().get("session")?.value}`,
+    },
+    body: JSON.stringify({ product: productId }),
+  });
+  const data = await res.json();
+  if (data) return data;
+  return null;
+};

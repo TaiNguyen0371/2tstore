@@ -35,12 +35,6 @@ export interface IProduct {
   };
 }
 
-export interface ICart {
-  productId: string;
-  quantity: number;
-  updatedAt: number;
-}
-
 export interface IAmbassador {
   name: string;
   image: IFile;
@@ -60,4 +54,10 @@ export interface IUser {
   district: string;
   ward: string;
   role: "admin" | "customer";
+}
+
+export interface ICartItem {
+  product: IProduct;
+  quantity: number;
+  size: string;
 }
