@@ -20,6 +20,9 @@ const CategoryAside = ({ className }: ICategoryAsideProps = {}) => {
         <Option className="!text-white !bg-cs_secondary_black hover:!bg-cs_tertiary_black" value="all">
           All
         </Option>
+        <Option className="!text-white !bg-cs_secondary_black hover:!bg-cs_tertiary_black" value="all">
+          A1
+        </Option>
       </Select>
     </div>
   );
