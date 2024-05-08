@@ -44,7 +44,6 @@ const FormInfo = ({ userInfo }: IFormInfo) => {
     // Set formik fields values based on userInfo state
     if (userInfo) {
       if (userInfo.city && userInfo.district && userInfo.ward) {
-        console.log("co address");
         const userCity = addressData?.cities.find(
           (item: any) => item.name === userInfo.city
         );

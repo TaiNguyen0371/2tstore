@@ -15,13 +15,13 @@ const Categories = async () => {
         />
         <div className="w-1/2 absolute left-0 top-1/2 translate-x-1/4 -translate-y-1/2">
           <p className="text-5xl font-bold w-1/2">
-            Don't miss out on our special sale
+            Don&apos;t miss out on our special sale
           </p>
           <Button className="mt-8">Buy now</Button>
         </div>
       </div>
       <div className="flex">
-        <CategoryFilter className="w-1/5"/>
+        <CategoryFilter className="w-1/5" />
       </div>
     </main>
   );

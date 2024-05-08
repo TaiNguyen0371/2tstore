@@ -11,7 +11,7 @@ const AppProvider = ({ children, token }: IAppProvider) => {
   useEffect(() => {
     if (!token) return;
     refreshToken(token);
-  }, []);
+  }, [token]);
   return <>{children}</>;
 };
 
